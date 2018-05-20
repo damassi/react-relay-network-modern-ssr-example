@@ -16,7 +16,7 @@ export const relaySSRMiddleware = isServer
   ? new RelayServerSSR()
   : new RelayClientSSR(window.__RELAY_BOOTSTRAP_DATA__)
 
-relaySSRMiddleware.debug = true
+relaySSRMiddleware.debug = false
 
 const network = new RelayNetworkLayer([
   relaySSRMiddleware.getMiddleware(),

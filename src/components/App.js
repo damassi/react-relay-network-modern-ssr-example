@@ -17,7 +17,9 @@ export default function App() {
       variables={{
         id: 'pablo-picasso',
       }}
-      render={({ error, props }) => {
+      render={response => {
+        const { error, props } = response
+
         if (error) {
           return <div>{error.message}</div>
         } else if (props) {

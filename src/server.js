@@ -11,6 +11,7 @@ app.get('/', async (req, res, next) => {
   renderToString(<App />)
   const relayData = await relaySSRMiddleware.getCache()
   const html = renderToString(<App />)
+  console.log(html)
 
   try {
     res.status(200).send(`
