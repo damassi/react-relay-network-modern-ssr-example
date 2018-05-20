@@ -5,9 +5,9 @@ import { renderToString } from 'react-dom/server'
 import { relaySSRMiddleware } from './relayEnvironment'
 
 const app = express()
-export default app
 
 app.get('/', async (req, res, next) => {
+  renderToString(<App />)
   renderToString(<App />)
   const relayData = await relaySSRMiddleware.getCache()
   const html = renderToString(<App />)
@@ -35,3 +35,5 @@ app.get('/', async (req, res, next) => {
     next(error)
   }
 })
+
+export default app

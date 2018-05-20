@@ -20,7 +20,7 @@ relaySSRMiddleware.debug = false
 
 const network = new RelayNetworkLayer([
   relaySSRMiddleware.getMiddleware(),
-  loggerMiddleware(),
+  // loggerMiddleware(),
   urlMiddleware({
     url: process.env.GRAPHQL_ENDPOINT,
   }),

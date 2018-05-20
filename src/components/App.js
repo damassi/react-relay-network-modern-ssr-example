@@ -6,6 +6,7 @@ import { Artist } from './Artist'
 export default function App() {
   return (
     <QueryRenderer
+      dataFrom="STORE_THEN_NETWORK"
       environment={environment}
       query={graphql`
         query AppQuery($id: String!) {

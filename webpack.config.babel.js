@@ -14,6 +14,9 @@ export default {
   entry: {
     artworks: ['webpack-hot-middleware/client', './src/client.js'],
   },
+  // externals: {
+  //   graphql: 'graphql', // FIXME: 64:0-70:117 "export 'SourceLocation' was not found in './language'
+  // },
   output: {
     filename: '[name].js',
     chunkFilename: '[name].bundle.js',
