@@ -12,28 +12,23 @@ import {
 
 const isServer = typeof window === 'undefined'
 
-export function getRelayEnvironment() {
-  const relaySSRMiddleware = isServer
-    ? new RelayServerSSR()
-    : new RelayClientSSR(window.relayData)
+export const relaySSRMiddleware = isServer
+  ? new RelayServerSSR()
+  : new RelayClientSSR(window.__RELAY_BOOTSTRAP_DATA__)
 
-  const network = new RelayNetworkLayer([
-    relaySSRMiddleware.getMiddleware(),
-    loggerMiddleware(),
-    urlMiddleware({
-      url: process.env.GRAPHQL_ENDPOINT,
-    }),
-  ])
+relaySSRMiddleware.debug = true
 
-  const source = new RecordSource()
-  const store = new Store(source)
-  const environment = new Environment({
-    network,
-    store,
-  })
+const network = new RelayNetworkLayer([
+  relaySSRMiddleware.getMiddleware(),
+  loggerMiddleware(),
+  urlMiddleware({
+    url: process.env.GRAPHQL_ENDPOINT,
+  }),
+])
 
-  return {
-    environment,
-    relaySSRMiddleware,
-  }
-}
+const source = new RecordSource()
+const store = new Store(source)
+export const environment = new Environment({
+  network,
+  store,
+})

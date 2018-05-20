@@ -1,11 +1,9 @@
 import React from 'react'
 import { QueryRenderer, graphql } from 'react-relay'
-import { getRelayEnvironment } from '../relayEnvironment'
+import { environment } from '../relayEnvironment'
 import { Artist } from './Artist'
 
 export default function App() {
-  const { environment } = getRelayEnvironment()
-
   return (
     <QueryRenderer
       environment={environment}

@@ -1,15 +1,16 @@
 import React from 'react'
 import express from 'express'
-import { renderToString } from 'react-dom/server'
 import App from './components/App'
+import { renderToString } from 'react-dom/server'
+import { relaySSRMiddleware } from './relayEnvironment'
 
 const app = express()
 export default app
 
-app.get('/', (req, res, next) => {
+app.get('/', async (req, res, next) => {
+  renderToString(<App />)
+  const relayData = await relaySSRMiddleware.getCache()
   const html = renderToString(<App />)
-  console.log(html)
-  const relayData = { foo: 'bar' }
 
   try {
     res.status(200).send(`
@@ -21,7 +22,7 @@ app.get('/', (req, res, next) => {
           <div id="react-root">${html}</div>
 
           <script>
-            window.__BOOTSTRAP__ = ${JSON.stringify(relayData)};
+            window.__RELAY_BOOTSTRAP_DATA__ = ${JSON.stringify(relayData)};
           </script>
 
           <script src="/assets/artworks.js"></script>
