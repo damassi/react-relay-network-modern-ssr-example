@@ -1,0 +1,11 @@
+{
+  "presets": [
+    "env",
+    "react",
+    "stage-3"
+  ],
+  "plugins": [
+    "relay",
+    "transform-class-properties"
+  ]
+}
