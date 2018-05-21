@@ -2,15 +2,15 @@ import React from 'react'
 import express from 'express'
 import App from './components/App'
 import { renderToString } from 'react-dom/server'
-import { relaySSRMiddleware } from './relayEnvironment'
+import { createRelayEnvironment } from './relayEnvironment'
 
 const app = express()
 
 app.get('/', async (req, res, next) => {
-  renderToString(<App />)
-  renderToString(<App />)
+  const environment = createRelayEnvironment()
+  renderToString(<App environment={environment} />)
   const relayData = await relaySSRMiddleware.getCache()
-  const html = renderToString(<App />)
+  const html = renderToString(<App environment={environment} />)
   console.log(html)
 
   try {

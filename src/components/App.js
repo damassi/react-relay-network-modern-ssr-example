@@ -1,13 +1,12 @@
 import React from 'react'
 import { QueryRenderer, graphql } from 'react-relay'
-import { environment } from '../relayEnvironment'
 import { Artist } from './Artist'
 
-export default function App() {
+export default function App(props) {
   return (
     <QueryRenderer
       dataFrom="STORE_THEN_NETWORK"
-      environment={environment}
+      environment={props.environment}
       query={graphql`
         query AppQuery($id: String!) {
           artist(id: $id) {
