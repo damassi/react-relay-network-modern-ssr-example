@@ -7,7 +7,14 @@
     "build": "NODE_ENV=production yarn sync:schema && yarn relay && yarn webpack -p",
     "postinstall": "patch-package && yarn link react-relay-network-modern-ssr",
     "relay": "relay-compiler --src ./src --schema ./graphql/schema.graphql",
-    "start": "concurrently --kill-others 'yarn relay --watch' 'babel-node index.js'"
+    "start": "yarn relay && concurrently --kill-others 'yarn relay --watch' 'babel-node index.js'"
+  },
+  "resolutions": {
+    "babel-plugin-relay": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/babel-plugin-relay-1.5.0-artsy.5.tgz",
+    "graphql": "0.13.0",
+    "relay-compiler": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/relay-compiler-1.5.0-artsy.5.tgz",
+    "react-relay": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/react-relay-1.5.0-artsy.5.tgz",
+    "relay-runtime": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/relay-runtime-1.5.0-artsy.5.tgz"
   },
   "dependencies": {
     "@artsy/express-reloadable": "^1.4.0",
@@ -15,19 +22,18 @@
     "concurrently": "^3.5.1",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
-    "graphql": "^0.12.3",
+    "graphql": "0.13.0",
     "morgan": "^1.9.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-relay": "1.5.0",
+    "react-relay": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/react-relay-1.5.0-artsy.5.tgz",
     "react-relay-network-modern": "^2.2.0",
     "react-relay-network-modern-ssr": "^0.0.1",
-    "relay-runtime": "1.5.0"
+    "relay-runtime": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/relay-runtime-1.5.0-artsy.5.tgz"
   },
   "devDependencies": {
     "babel-loader": "^7.1.4",
-    "babel-plugin-relay": "1.5.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-relay": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/babel-plugin-relay-1.5.0-artsy.5.tgz",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
@@ -37,7 +43,7 @@
     "postinstall-postinstall": "^1.0.0",
     "prettier": "^1.12.1",
     "progress-bar-webpack-plugin": "^1.11.0",
-    "relay-compiler": "1.5.0",
+    "relay-compiler": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/relay-compiler-1.5.0-artsy.5.tgz",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3",
     "webpack-dev-middleware": "^3.1.3",
