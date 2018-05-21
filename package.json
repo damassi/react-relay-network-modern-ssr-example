@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=production yarn sync:schema && yarn relay && yarn webpack -p",
-    "postinstall": "patch-package && yarn link react-relay-network-modern-ssr",
+    "postinstall": "patch-package",
     "relay": "relay-compiler --src ./src --schema ./graphql/schema.graphql",
     "start": "yarn relay && concurrently --kill-others 'yarn relay --watch' 'babel-node index.js'"
   },
