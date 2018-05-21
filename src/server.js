@@ -9,9 +9,9 @@ const app = express()
 app.get('/', async (req, res, next) => {
   const environment = createRelayEnvironment()
   renderToString(<App environment={environment} />)
-  const relayData = await relaySSRMiddleware.getCache()
+  const relayData = await environment.relaySSRMiddleware.getCache()
   const html = renderToString(<App environment={environment} />)
-  console.log(html)
+  console.log('SERVER:', html)
 
   try {
     res.status(200).send(`
