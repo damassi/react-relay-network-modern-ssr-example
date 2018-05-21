@@ -9,15 +9,16 @@ const app = express()
 app.get('/', async (req, res, next) => {
   const environment = createRelayEnvironment()
   renderToString(<App environment={environment} />)
-  const relayData = await relaySSRMiddleware.getCache()
-  const html = renderToString(<App environment={environment} />)
-  console.log(html)
+  const relayData = await environment.relaySSRMiddleware.getCache()
 
-  try {
-    res.status(200).send(`
+  setTimeout(() => {
+    const html = renderToString(<App environment={environment} />)
+
+    try {
+      res.status(200).send(`
       <html>
         <head>
-          <title>Isomorphic Relay Modern App</title>
+          <title>Relay Modern SSR Example</title>
         </head>
         <body>
           <div id="react-root">${html}</div>
@@ -30,10 +31,11 @@ app.get('/', async (req, res, next) => {
         </body>
       </html>
     `)
-  } catch (error) {
-    console.log('(server.js) Error: ', error) // eslint-disable-line
-    next(error)
-  }
+    } catch (error) {
+      console.log('(server.js) Error: ', error) // eslint-disable-line
+      next(error)
+    }
+  }, 0)
 })
 
 export default app

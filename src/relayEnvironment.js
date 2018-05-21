@@ -6,13 +6,13 @@ import { Environment, RecordSource, Store } from 'relay-runtime'
 import {
   RelayNetworkLayer,
   urlMiddleware,
-  loggerMiddleware,
+  // loggerMiddleware,
 } from 'react-relay-network-modern'
 
 export function createRelayEnvironment() {
   const isServer = typeof window === 'undefined'
 
-  export const relaySSRMiddleware = isServer
+  const relaySSRMiddleware = isServer
     ? new RelayServerSSR()
     : new RelayClientSSR(window.__RELAY_BOOTSTRAP_DATA__)
 
@@ -28,7 +28,7 @@ export function createRelayEnvironment() {
 
   const source = new RecordSource()
   const store = new Store(source)
-  export const environment = new Environment({
+  const environment = new Environment({
     network,
     store,
   })
