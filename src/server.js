@@ -10,11 +10,12 @@ app.get('/', async (req, res, next) => {
   const environment = createRelayEnvironment()
   renderToString(<App environment={environment} />)
   const relayData = await environment.relaySSRMiddleware.getCache()
-  const html = renderToString(<App environment={environment} />)
-  console.log('SERVER:', html)
 
-  try {
-    res.status(200).send(`
+  setTimeout(() => {
+    const html = renderToString(<App environment={environment} />)
+
+    try {
+      res.status(200).send(`
       <html>
         <head>
           <title>Isomorphic Relay Modern App</title>
@@ -30,10 +31,11 @@ app.get('/', async (req, res, next) => {
         </body>
       </html>
     `)
-  } catch (error) {
-    console.log('(server.js) Error: ', error) // eslint-disable-line
-    next(error)
-  }
+    } catch (error) {
+      console.log('(server.js) Error: ', error) // eslint-disable-line
+      next(error)
+    }
+  }, 0)
 })
 
 export default app
