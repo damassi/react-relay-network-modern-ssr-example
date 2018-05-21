@@ -9,13 +9,6 @@
     "relay": "relay-compiler --src ./src --schema ./graphql/schema.graphql",
     "start": "concurrently --kill-others 'yarn relay --watch' 'babel-node index.js'"
   },
-  "resolutions": {
-    "babel-plugin-relay": "1.5.0",
-    "graphql": "^0.12.3",
-    "relay-compiler": "1.5.0",
-    "react-relay": "1.5.0",
-    "relay-runtime": "1.5.0"
-  },
   "dependencies": {
     "@artsy/express-reloadable": "^1.4.0",
     "babel-cli": "^6.26.0",

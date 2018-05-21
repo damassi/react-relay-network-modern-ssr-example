@@ -18,7 +18,7 @@ app.get('/', async (req, res, next) => {
       res.status(200).send(`
       <html>
         <head>
-          <title>Isomorphic Relay Modern App</title>
+          <title>Relay Modern SSR Example</title>
         </head>
         <body>
           <div id="react-root">${html}</div>

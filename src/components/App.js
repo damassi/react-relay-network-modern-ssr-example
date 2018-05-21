@@ -2,7 +2,7 @@ import React from 'react'
 import { QueryRenderer, graphql } from 'react-relay'
 import { Artist } from './Artist'
 
-export default function App(props) {
+export default function App({ environment }) {
   return (
     <div
       style={{
@@ -12,7 +12,7 @@ export default function App(props) {
     >
       <QueryRenderer
         dataFrom="STORE_THEN_NETWORK"
-        environment={props.environment}
+        environment={environment}
         query={graphql`
           query AppQuery($id: String!) {
             artist(id: $id) {
@@ -23,9 +23,7 @@ export default function App(props) {
         variables={{
           id: 'pablo-picasso',
         }}
-        render={response => {
-          const { error, props } = response
-
+        render={({ error, props }) => {
           if (error) {
             return <div>{error.message}</div>
           } else if (props) {
