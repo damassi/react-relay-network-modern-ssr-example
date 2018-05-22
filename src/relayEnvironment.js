@@ -9,12 +9,12 @@ import {
   // loggerMiddleware,
 } from 'react-relay-network-modern'
 
-export function createRelayEnvironment() {
+export function createRelayEnvironment(cache) {
   const isServer = typeof window === 'undefined'
 
   const relaySSRMiddleware = isServer
     ? new RelayServerSSR()
-    : new RelayClientSSR(window.__RELAY_BOOTSTRAP_DATA__)
+    : new RelayClientSSR(cache)
 
   relaySSRMiddleware.debug = false
 
