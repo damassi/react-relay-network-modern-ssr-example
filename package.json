@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=production yarn sync:schema && yarn relay && yarn webpack -p",
-    "postinstall": "patch-package",
+    "postinstall": "patch-package && cd node_modules/react-relay-network-modern-ssr && yarn build-lib",
     "relay": "relay-compiler --src ./src --schema ./graphql/schema.graphql",
     "start": "yarn relay && concurrently --kill-others 'yarn relay --watch' 'babel-node index.js'"
   },
@@ -28,8 +28,8 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-relay": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/react-relay-1.5.0-artsy.5.tgz",
-    "react-relay-network-modern": "^2.2.0",
-    "react-relay-network-modern-ssr": "^0.0.1",
+    "react-relay-network-modern": "^2.3.0",
+    "react-relay-network-modern-ssr": "https://github.com/nodkz/react-relay-network-modern-ssr/archive/v1.1.0.tar.gz",
     "relay-runtime": "https://github.com/alloy/relay/releases/download/v1.5.0-artsy.5/relay-runtime-1.5.0-artsy.5.tgz"
   },
   "devDependencies": {
